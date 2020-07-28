@@ -1,0 +1,16 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} Hakkımızda Sayfamız {{ data[0].title }}{% endblock %}
+{% block keywords %}Hakkımızda Sayfam{% endblock %}
+{% block description %}Hakkımızda sayfam{% endblock %}
+{% block content %}
+<<div id="wrapper">
+        <div id="content">
+               <p>
+                   {{ data[0].contact|raw }}
+               </p>
+        </div>
+</div>
+
+
+{% endblock %}

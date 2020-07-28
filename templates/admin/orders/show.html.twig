@@ -1,0 +1,119 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Orders Detail{% endblock %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/css/table-style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/css/basictable.css"/>
+    <script type="text/javascript" src="{{ asset('admin') }}/js/jquery.basictable.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table').basictable();
+            $('#table-breakpoint').basictable({
+                breakpoint: 1
+            });
+
+            $('#table-swap-axis').basictable({
+                swapAxis: true
+            });
+
+            $('#table-force-off').basictable({
+                forceResponsive: false
+            });
+
+            $('#table-no-resize').basictable({
+                noResize: true
+            });
+
+            $('#table-two-axis').basictable();
+
+            $('#table-max-height').basictable({
+                tableWrapper: true
+            });
+        });
+    </script>
+    <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'/>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/icon-font.min.css" type='text/css'/>
+    <table id="table-one-axis" class="one-axis; col-md-12">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Product Name</th>
+            <th>Sale Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set total=0 %}
+        {% for rs in orderdetail %}
+            <tr>
+                <td>{{ rs.id }}</td>
+                <td>{{ rs.name }}</td>
+                <td>{{ rs.price }}</td>
+                <td>{{ rs.quantity }}</td>
+                <td>{{ rs.amount }}</td>
+                <td>{{ rs.status }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr><hr>
+    <table id="table-one-axis" class="one-axis; col-md-3">
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td>{{ order.id }}</td>
+        </tr>
+        <tr>
+            <td>Userid</td>
+            <td>{{ order.userid }}</td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td>{{ order.amount }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ order.name }}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{ order.address }}</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>{{ order.city }}</td>
+        </tr>
+        <<form action="{{ path('admin_orders_update',{'id': order.id }) }}" method="post">
+        <tr>
+            <th>Shipinfo</th>
+            <td><textarea name="shipinfo" cols="100" rows="3"> {{ order.shipinfo }}</textarea></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td><textarea name="note" cols="100" rows="3"> {{ order.note }}</textarea></td>
+        </tr>
+        <tr>
+            <td><select name="status">
+                    <option>{{ order.status }}</option>
+                    <option>Accepted</option>
+                    <option>İnshiping</option>
+                    <option>Canceled</option>
+                    <option>Completed</option>
+                </select>
+                <input type="submit" value="Güncelle">
+            </td>
+        </tr>
+        </form>
+        </tbody>
+        <td>Toplam alışveriş tutarı : {{ order.amount }} ₺</td>
+    </table>
+    <div style="margin-top: 600px"></div>
+    {% endblock %}

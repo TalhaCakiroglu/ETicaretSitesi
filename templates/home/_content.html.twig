@@ -1,0 +1,25 @@
+<div class="features_items"><!--features_items-->
+    <h2 class="title text-center">Ürün Özellikleri</h2>
+    {% for product in products %}
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        <img src="{{ asset("uploads") }}/images/{{ product.image }}">
+                        <h2>{{ product.title }}</h2>
+                        <p>{{ product.pprice }}</p>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ürüne Git</a>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="overlay-content">
+                            <h2>{{ product.title }}</h2>
+                            <p>{{ product.pprice }}</p>
+                            <a href="{{ path('product_detail', {'id': product.id}) }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ürüne Git</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div><!--features_items-->

@@ -1,0 +1,75 @@
+<form role="form" method="post">
+
+    <div class="form-group has-success">
+        <label class="text-success" > Kategorisi </label>
+        <select  name="product[categoryid]" class="col-sm-7">
+         {% if(catname) %}
+            <option value="{{ product.categoryid }}">{{ catname[0].title }}</option>
+         {% endif %}
+            {% for cat in catlist %}
+                <option value="{{ cat.id }}">{{ cat.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    </div>
+    <div class="form-group has-success">
+
+        <label class="text-danger" > Adı</label>
+        <input type="text"  name="product[title]" value="{{ product.title }}" class="col-sm-7" placeholder="Kategori Adı" >
+    </div>
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" > Anahtar Kelimeler</label>
+        <input type="text"  name="product[keywords]" value="{{ product.keywords }}" class="col-sm-7" placeholder="Anahtar Kelimeler" >
+    </div>
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" >Kısa Açıklama</label>
+        <input type="text"  name="product[description]" value="{{ product.description }}" class="col-sm-7" placeholder="Kısa Açıklama" >
+    </div>
+
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" >Alış Fiyatı</label>
+        <input type="text"  name="product[pprice]" value="{{ product.pprice }}" class="col-sm-7" placeholder="Alış Fiyatı" >
+    </div>
+
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" >Satış Fiyatı</label>
+        <input type="text"  name="product[sprice]" value="{{ product.sprice }}" class="col-sm-7" placeholder="Kısa Açıklama" >
+    </div>
+
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" >Miktar</label>
+        <input type="text"  name="product[amount]" value="{{ product.amount }}" class="col-sm-7" placeholder="Stok Miktarı" >
+    </div>
+
+    <div class="form-group has-error">
+        <label class="p-3 mb-2 bg-dark text-white" >Durum</label>
+        <select  name="category[status] " class="col-sm-7">
+            <option>{{ product.status }}</option>
+            <option>True</option>
+            <option selected>False</option>
+
+        </select>
+    </div>
+<br>
+    <div class="form-group has-warning">
+        <label class="p-3 mb-2 bg-dark text-white" >Detay</label>
+        <textarea id="detail" name="product[detail]" rows="10" cols="100">{{ product.detail }}</textarea>
+    </div>
+
+
+<br>
+    <div class="form-group has-success">
+
+        <button type="submit" class="btn btn-success ">İptal</button>
+        <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+    </div>
+</form>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#detail' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+

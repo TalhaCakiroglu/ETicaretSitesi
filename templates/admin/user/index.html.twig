@@ -1,0 +1,44 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %} Üye Listesi {% endblock %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b>Üye Listesi</b>
+        </div>
+        <small><a href="{{ path('admin_user_new') }}" class="btn btn-warning" >Üye Ekleme</a></small>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Adı </th>
+                        <th>Email</th>
+                        <th>Durum</th>
+                        <th>Roller</th>
+                        <th>Düzelt</th>
+                        <th>Sil</th>
+                    </tr>
+                    {% for row in user %}
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.status }}</td>
+                        <td>{% for item in row.roles %}
+                         {{ item }}
+                            {% endfor %}</td>
+                        <td><a href="{{ path('admin_user_edit',{'id':row.id}) }}" class="btn btn-primary">Düzenle</a></td>
+                        <td><a href="{{ path('admin_user_delete',{'id':row.id}) }}" onclick="return confirm('Silinecek Emin Misiniz?');" class="btn btn-danger">Sil</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

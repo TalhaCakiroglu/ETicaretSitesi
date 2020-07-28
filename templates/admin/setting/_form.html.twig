@@ -1,0 +1,130 @@
+{{ include ('admin/messages.html.twig')  }}
+<form role="form" method="post">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab">Genel Bilgiler</a>
+            </li>
+            <li class=""><a href="#tab_2" data-toggle="tab">Email Server</a>
+            </li>
+            <li class=""><a href="#tab_3" data-toggle="tab">Hakkımızda Sayfası</a>
+            </li>
+            <li class=""><a href="#tab_4" data-toggle="tab">İletişim Sayfası</a>
+            </li>
+            <li class=""><a href="#tab_5" data-toggle="tab">Referanslar Sayfası</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active " id="tab_1">
+
+                <div class="form-group has-success">
+
+                    <label class="p-3 mb-2 bg-dark text-white" > Adı</label>
+                    <input type="text"  name="setting[title]" value="{{ setting.title }}" class="col-sm-10" placeholder=" Adı" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" > Anahtar Kelimeler</label>
+                    <input type="text"  name="setting[keywords]" value="{{ setting.keywords }}" class="col-sm-10" placeholder="Anahtar Kelimeler" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >Kısa Açıklama</label>
+                    <input type="text"  name="setting[description]" value="{{ setting.description }}" class="col-sm-10" placeholder="Kısa Açıklama" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >Firma Adı</label>
+                    <input type="text"  name="setting[company]" value="{{ setting.company }}" class="col-sm-10" placeholder="Kısa Açıklam" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >Adresi</label>
+                    <input type="text"  name="setting[address]" value="{{ setting.address }}" class="col-sm-10" placeholder="Kısa Açıklama" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >Fax</label>
+                    <input type="text"  name="setting[fax]" value="{{ setting.fax }}" class="col-sm-10" placeholder="Kısa Açıklama" >
+                </div>
+                <div class="form-group has-error">
+                    <label class="p-3 mb-2 bg-dark text-white" > Durumu</label>
+                    <select  name="setting[status] " class="col-sm-10">
+                        <option>{{ setting.status }}</option>
+                        <option>True</option>
+                        <option selected>False</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="tab-pane " id="tab_2">
+
+                <div class="form-group has-success">
+
+                    <label class="p-3 mb-2 bg-dark text-white" >Email Server</label>
+                    <input type="text"  name="setting[smtpserver]" value="{{ setting.smtpserver }}" class="col-sm-10" placeholder=" Adı" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" > Email</label>
+                    <input type="text"  name="setting[smtpemail]" value="{{ setting.smtpemail }}" class="col-sm-10" placeholder="Anahtar Kelimeler" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >Email Şifre</label>
+                    <input type="text"  name="setting[smptppass]" value="{{ setting.smptppass }}" class="col-sm-10" placeholder="Kısa Açıklam" >
+                </div>
+                <div class="form-group has-warning">
+                    <label class="p-3 mb-2 bg-dark text-white" >SMTP Port</label>
+                    <input type="text"  name="setting[smtpport]" value="{{ setting.smtpport }}" class="col-sm-10" placeholder="Kısa Açıklam" >
+                </div>
+                <div class="row"></div>
+            </div>
+            <div class="tab-pane " id="tab_3">
+
+                <div class="form-group has-warning">
+                    <textarea id="contact" name="setting[contact]" rows="10" cols="100">{{ setting.contact }}</textarea>
+                </div>
+                <div class="row"></div>
+            </div>
+            <div class="tab-pane " id="tab_4">
+
+                <div class="form-group has-warning">
+
+                    <textarea id="aboutus" name="setting[aboutus]" rows="7" cols="50">{{ setting.aboutus }}</textarea>
+                </div>
+                <div class="row"></div>
+            </div>
+            <div class="tab-pane " id="tab_5">
+
+                <div class="form-group has-warning">
+                    <textarea id="referances" name="setting[referances]" rows="7" cols="50">{{ setting.referances }}</textarea>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="form-group has-success">
+
+            <button type="submit" class="btn btn-success ">İptal</button>
+            <button type="submit" class="btn btn-info pull-right">Kaydet</button>
+        </div>
+        <div class="row"></div>
+    </div>
+
+</form>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#contact' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#aboutus' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#referances' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
